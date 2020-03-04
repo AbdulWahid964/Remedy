@@ -17,18 +17,18 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /*Author Abdul Wahid*/
 @Entity
-@Table(name = "user_registration")
+@Table(name = "customer")
 public class Users {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int userId;
+	@Column(name = "cust_id")
+	private int customerId;
 
-	@Column(name = "manager_name")
+	@Column(name = "customer_name")
 	@NotNull
-	@NotEmpty(message = "User Name should not be Empty")
-	private String managerName;
+	@NotEmpty(message = "Customer Name should not be Empty")
+	private String customerName;
 
 	@NotNull
 	@NotEmpty(message = "Email id should not be Empty")
@@ -68,21 +68,20 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public int getUserId() {
-		return userId;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getManagerName() {
-		return managerName;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setManagerName(String managerName) {
-		this.managerName = managerName;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	public String getEmailId() {

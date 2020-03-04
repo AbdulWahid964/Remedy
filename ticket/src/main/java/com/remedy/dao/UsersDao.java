@@ -10,4 +10,5 @@ import com.remedy.entity.Users;
  */
 public interface UsersDao extends CrudRepository<Users, Integer> {
 
+	public Users findByCustomerName(String customerName);
 }

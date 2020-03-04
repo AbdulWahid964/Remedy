@@ -19,7 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.remedy.controller.UserController;
-import com.remedy.exception.DatabaseAuthenticationException;
 
 /*Author Abdul Wahid*/
 
@@ -44,9 +43,9 @@ public class RemedyConfiguration extends WebSecurityConfigurerAdapter {
 		logger.info("In JDBC Authentication");
 		auth.jdbcAuthentication().dataSource(dataSource()).passwordEncoder(passwordEncoder())
 				.usersByUsernameQuery(
-						"select manager_name,encoded_password,enabled from user_registration where manager_name=?")
+						"select customer_name,encoded_password,enabled from customer where customer_name=?")
 				.authoritiesByUsernameQuery(
-						"select u.manager_name as username, r.roles as role from user_registration u INNER JOIN roles r ON r.role_id = u.role_role_id where manager_name=?");
+						"select u.customer_name as username, r.roles as role from customer u INNER JOIN roles r ON r.role_id = u.role_role_id where customer_name=?");
 	}
 
 	@Override
@@ -60,8 +59,7 @@ public class RemedyConfiguration extends WebSecurityConfigurerAdapter {
 					.anyRequest().authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/home", true)
 					.permitAll().and().logout().and().logout().permitAll();
 		} catch (Exception e) {
-			throw new DatabaseAuthenticationException(
-					"Exception Caught in the Spring Security Method : configure(HttpSecurity Method)");
+			logger.error(e.getMessage());
 		}
 		http.csrf().disable();
 	}

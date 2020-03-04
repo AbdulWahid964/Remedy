@@ -49,73 +49,74 @@
 	</form>
 	<br>
 	<br> --%>
-
-
-	<%-- <c:if test="${role eq '[manager]'}">
-		<table class="table">
-			<tr>
-				<th width="80">Product Id</th>
-				<th width="80">Product Name</th>
-				<th width="80">Price</th>
-				<th width="80">Quantity</th>
-				<th width="80">Description</th>
-				<th width="80">Edit</th>
-				<th width="80">Delete</th>
-			</tr>
-			<c:if test="${productList.size() eq 0}">
-				<tr>
-					<td colspan=7>No Product to be displayed</td>
-			</c:if>
-			<c:forEach var="product" items="${productList}">
-				<tr>
-					<td>${product.productId}</td>
-					<td>${product.productName}</td>
-					<td>${product.productPrice}</td>
-					<td>${product.quantity}</td>
-					<td>${product.description}</td>
-					<td><a href="<c:url value='/product/${product.productId}' />">Edit</a></td>
-					<td><a  href="<c:url value='/products/product/${product.productId}'/>">Delete</a></td>
-				</tr>
-			</c:forEach>
-		</table>
-		<br />
-		<a href="/product">Add Product</a>
-		<br/>
-		<a href="/stock">Add Stock</a>
-	</c:if> --%>
-	<%-- <div>
-		<c:if test="${role eq '[user]'}">
+	<br>
+	<h1>Ticket Details</h1>
+	<div>
+		<c:if test="${role eq '[customer]'}">
+		<input id="customerId" name="customerId" type="hidden" value="${customerId}" />
 			<table class="table">
 				<tr>
-					<th width="80">Product Id</th>
-					<th width="80">Product-Name</th>
-					<th width="80">Price</th>
-					<th width="80">Quantity</th>
-					<th width="80">Description</th>
+				
+					<th width="80">Ticket Id</th>
+					<th width="80">Caller-Name</th>
+					<th width="80">State</th>
+					<th width="80">Priority</th>
+					<th width="80">Short Description</th>
 				</tr>
-				<c:if test="${productList.size() eq 0}">
+				<c:if test="${ticketList.size() eq 0}">
 					<tr>
 						<td colspan=5>No Data to be display</td>
 				</c:if>
-				<c:forEach var="product" items="${productList}">
+				<c:forEach var="ticket" items="${ticketList}">
 					<tr>
-						<td>${product.productId}</td>
-						<td>${product.productName}</td>
-						<td>${product.productPrice}</td>
-						<td>${product.quantity}</td>
-						<td>${product.description}</td>
+					
+						<td>${ticket.ticketId}</td>
+						<td>${ticket.user.customerName}</td>
+						<td>${ticket.state}</td>
+						<td>${ticket.priority}</td>
+						<td>${ticket.shortDescription}</td>
 					</tr>
 				</c:forEach>
 			</table>
 			<br />
+			<a href="/ticket">Create Ticket</a>
 		</c:if>
-	</div> --%>
-	<br>
+		<c:if test="${role eq '[admin]'}">
+			<table class="table">
+				<tr>
+					<th width="80">Ticket Id</th>
+					<th width="80">Caller-Name</th>
+					<th width="80">State</th>
+					<th width="80">Priority</th>
+					<th width="80">Short Description</th>
+					<th width="80">Edit</th>
+					<th width="80">Delete</th>
+				</tr>
+				<c:if test="${ticketList.size() eq 0}">
+					<tr>
+						<td colspan=7>No New Tickets is available</td>
+				</c:if>
+				<c:forEach var="ticket" items="${ticketList}">
+					<tr>
+						<td>${ticket.ticketId}</td>
+						<td>${ticket.user.customerName}</td>
+						<td>${ticket.state}</td>
+						<td>${ticket.priority}</td>
+						<td>${ticket.shortDescription}</td>
+						<td><a href="<c:url value='/ticket/${ticket.ticketId}' />">Edit</a></td>
+						<td><a
+							href="<c:url value='/tickets/ticket/${ticket.ticketId}'/>">Close</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+			<br />
+			<br />
+		</c:if>
+	</div>
 	<br>
 	<div>
 		Welcome Back
 		<sec:authentication property="name" />
-
 		<sec:authentication property="principal.authorities" />
 		<a href="logout">Logout</a>
 	</div>

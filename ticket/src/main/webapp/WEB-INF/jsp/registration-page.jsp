@@ -23,19 +23,18 @@
 
 
 	<div class="container">
-		<h1 align="center">Registration Form</h1>
+		<h1 align="center">Customer Registration Form</h1>
 		<br />
-
 		<form:form action="register" method="post" modelAttribute="users">
 			<table>
 				<tr>
-					<td><form:input path="userId" type="hidden" /></td>
+					<td><form:input path="customerId" type="hidden" /></td>
 				</tr>
 				<tr>
-					<td>Manager Name</td>
-					<td><form:input path="managerName" cssClass="formInput"
-							placeholder="Enter Manager Name" /></td>
-					<td><form:errors path="managerName" cssClass="formError" /></td>
+					<td>Customer Name</td>
+					<td><form:input path="customerName" cssClass="formInput"
+							placeholder="Enter Customer Name" /></td>
+					<td><form:errors path="customerName" cssClass="formError" /></td>
 				</tr>
 				<tr>
 					<td>Email Id:</td>
